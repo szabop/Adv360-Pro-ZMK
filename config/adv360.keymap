@@ -35,7 +35,7 @@
 
         combo_updown {
             bindings = <&mo 2>;
-            key-positions = <71 72 40>;
+            key-positions = <71 72>;
         };
     };
 
