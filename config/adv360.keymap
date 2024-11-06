@@ -35,7 +35,7 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick_tap_ms = <175>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
 
             hold-trigger-key-positions = <7 8 9 10 11 12 13 27 45 59 75 74 58 44 26 25 43 57 73 72 56 42 24 23 41 55 71 54 40 22 21 39 37 38 53 69 70 68>;
@@ -50,7 +50,7 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
             quick_tap_ms = <175>;
-            flavor = "balanced";
+            flavor = "tap-preferred";
             bindings = <&kp>, <&kp>;
 
             hold-trigger-on-release;
