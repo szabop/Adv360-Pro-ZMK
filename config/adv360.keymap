@@ -29,91 +29,92 @@
             bindings = <&kp>, <&kp>;
         };
 
-        hml: compatible = "zmk,behavior-hold-tap";
+        hml: homerow_mods_left {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick_tap_ms = <175>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
 
-        #binding-cells = <2>;
-        tapping-term-ms = <200>;
-        flavor = "balanced";
-        bindings = <&kp>, <&kp>;
+            hold-trigger-key-positions = <7 8 9 10 11 12 13 27 45 59 75 74 58 44 26 25 43 57 73 72 56 42 24 23 41 55 71 54 40 22 21 39 37 38 53 69 70 68>;
+            hold-trigger-on-release;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <75>;
+        };
 
-        hold-trigger-key-positions = <7 8 9 10 11 12 13 27 45 59 75 74 58 44 26 25 43 57 73 72 56 42 24 23 41 55 71 54 40 22 21 39 37 38 53 69 70 68>;
-        hold-trigger-on-release;
-        quick-tap-ms = <175>;
-        require-prior-idle-ms = <75>;
+        hmr: homerow_mods_right {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HMR";
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick_tap_ms = <175>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+
+            hold-trigger-on-release;
+            hold-trigger-key-positions = <0 1 2 3 4 5 6 14 15 16 17 18 19 20 28 29 30 31 32 33 34 35 36 46 47 48 49 50 51 52 60 61 62 63 64 65 66 67>;
+            quick-tap-ms = <175>;
+            require-prior-idle-ms = <75>;
+        };
     };
 
-    hmr: compatible = "zmk,behavior-hold-tap";
+    combos { compatible = "zmk,combos"; };
 
-    #binding-cells = <2>;
-    tapping-term-ms = <200>;
-    flavor = "balanced";
-    bindings = <&kp>, <&kp>;
+    macros {
+    };
 
-    hold-trigger-on-release;
-    hold-trigger-key-positions = <0 1 2 3 4 5 6 14 15 16 17 18 19 20 28 29 30 31 32 33 34 35 36 46 47 48 49 50 51 52 60 61 62 63 64 65 66 67>;
-    quick-tap-ms = <175>;
-    require-prior-idle-ms = <75>;
-};
+    keymap {
+        compatible = "zmk,keymap";
 
-};
-
-combos { compatible = "zmk,combos"; };
-
-macros {
-};
-
-keymap {
-    compatible = "zmk,keymap";
-
-    default_layer {
-        bindings = <
+        default_layer {
+            bindings = <
 &kp EQUAL  &kp N1           &kp N2               &kp N3             &kp N4           &kp N5  &tog 1                                                       &mo 3          &kp N6  &kp N7            &kp N8              &kp N9                &kp N0               &kp MINUS
 &kp TAB    &kp Q            &kp W                &kp E              &kp R            &kp T   &kp CAPSLOCK                                                 &caps_word     &kp Y   &kp U             &kp I               &kp O                 &kp P                &kp BSLH
 &kp ESC    &hml LEFT_WIN A  &hml LEFT_CONTROL S  &hml LEFT_SHIFT D  &hml LEFT_ALT F  &kp G   &kp LEFT_WIN  &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &kp RIGHT_ALT  &kp H   &hmr RIGHT_ALT J  &hmr RIGHT_SHIFT K  &hmr RIGHT_CONTROL L  &hmr RIGHT_WIN SEMI  &kp SQT
 &kp LSHFT  &kp Z            &kp X                &kp C              &kp V            &kp B                            &kp HOME      &kp PG_UP                            &kp N   &kp M             &kp COMMA           &kp DOT               &kp FSLH             &kp RSHFT
 &mo 2      &kp GRAVE        &kp CAPSLOCK         &kp LEFT           &kp RIGHT                &kp BSPC      &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp SPACE              &kp DOWN_ARROW    &kp UP_ARROW        &kp LBKT              &kp RBKT             &mo 2
-        >;
-    };
+            >;
+        };
 
-    keypad {
-        bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                                   &mo 3      &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
-&trans  &trans  &trans  &trans  &trans  &trans  &trans                                                   &none      &kp Y   &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
-&trans  &trans  &trans  &trans  &trans  &trans  &trans    &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &none      &kp H   &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
-&trans  &trans  &trans  &trans  &trans  &trans                       &kp HOME      &kp PG_UP                        &kp N   &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
-&mo 2   &trans  &trans  &trans  &trans          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0          &trans      &trans        &kp KP_DOT     &kp RBKT         &mo 2
-        >;
-    };
+        keypad {
+            bindings = <
+&trans  &trans  &trans   &trans   &trans   &trans    &trans                                                     &mo 3      &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
+&trans  &trans  &trans   &trans   &trans   &trans    &trans                                                    &none       &kp Y   &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
+&trans  &trans  &trans   &trans   &trans   &trans    &trans     &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &none       &kp H   &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
+&trans  &trans  &trans   &trans   &trans   &trans                          &kp HOME      &kp PG_UP                         &kp N   &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
+&mo 2   &trans  &trans   &trans   &trans   &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0        &trans     &trans      &kp KP_DOT     &kp RBKT         &mo 2
+            >;
+        };
 
-    fn {
-        bindings = <
+        fn {
+            bindings = <
 &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &tog 1                                      &mo 3   &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &kp F12
 &trans  &trans  &trans  &trans  &trans  &trans  &none                                       &none   &trans  &trans  &trans  &trans   &trans   &trans
 &trans  &trans  &trans  &trans  &trans  &trans  &none   &trans  &trans      &trans  &trans  &none   &trans  &trans  &trans  &trans   &trans   &trans
 &trans  &trans  &trans  &trans  &trans  &trans                  &trans      &trans                  &trans  &trans  &trans  &trans   &trans   &trans
 &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans      &trans  &trans  &trans          &trans  &trans  &trans   &trans   &trans
-        >;
-    };
+            >;
+        };
 
-    mod {
-        bindings = <
+        mod {
+            bindings = <
 &none  &bt BT_SEL 0          &bt BT_SEL 1          &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &none                                                  &trans                  &none  &none       &none       &none       &none  &none
 &none  &kp C_BRIGHTNESS_DEC  &kp C_BRIGHTNESS_INC  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_MUTE    &bootloader                                            &bootloader             &none  &none       &none       &none       &none  &none
 &none  &kp C_PLAY_PAUSE      &kp C_STOP            &kp C_PREV    &kp C_NEXT    &to 4         &none        &none  &none      &bt BT_CLR  &none       &rgb_ug RGB_MEFS_CMD 5  &none  &none       &none       &none       &none  &none
 &none  &none                 &none                 &none         &macro_ver    &none                             &none      &none                                           &none  &none       &none       &none       &none  &none
 &none  &none                 &none                 &none         &none                       &none        &none  &none      &none       &bl BL_TOG  &rgb_ug RGB_TOG                &bl BL_DEC  &bl BL_INC  &bl BL_TOG  &none  &none
-        >;
-    };
+            >;
+        };
 
-    gaming {
-        bindings = <
+        gaming {
+            bindings = <
 &kp EQUAL  &kp N1     &kp N2     &kp N3    &kp N4     &kp N5  &trans                                                     &trans     &kp N6  &kp N7    &kp N8     &kp N9    &kp N0    &kp MINUS
 &kp TAB    &kp Q      &kp W      &kp E     &kp R      &kp T   &trans                                                     &trans     &kp Z   &kp U     &kp I      &kp O     &kp P     &kp BSLH
 &kp ESC    &kp A      &kp S      &kp D     &kp F      &kp G   &trans    &kp LGUI  &kp LALT      &kp LCTRL      &kp RGUI  &trans     &kp H   &kp J     &kp K      &kp L     &kp SEMI  &kp SQT
 &kp LSHFT  &kp Y      &kp X      &kp C     &kp F      &kp B                       &kp HOME      &kp PAGE_UP                         &kp N   &kp M     &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
 &to 0      &kp GRAVE  &kp GRAVE  &kp LEFT  &kp RIGHT          &kp LEFT  &kp DEL   &kp END       &kp PAGE_DOWN  &kp RET   &kp SPACE          &kp DOWN  &kp UP     &kp LBKT  &kp RBKT  &to 0
-        >;
+            >;
+        };
     };
-};
-
 };
